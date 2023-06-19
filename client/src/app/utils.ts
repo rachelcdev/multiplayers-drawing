@@ -1,4 +1,4 @@
-export const drawLine = ({ctx, currPoint, prevPoint}: Draw, lineColor: string) => {
+export const drawLine = ({ctx, currPoint, prevPoint, lineColor}: DrawWithColor) => {
   const startPoint = prevPoint || currPoint;
   const lineWidth = 5
   

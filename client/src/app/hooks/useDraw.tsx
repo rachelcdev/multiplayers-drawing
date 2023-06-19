@@ -1,7 +1,7 @@
 "use client"
 import { useCallback, useEffect, useRef, useState } from "react"
 
-const useDraw = (onDraw: ({ctx,currPoint, prevPoint}: Draw, _: string)=>void, lineColor: string) => {
+const useDraw = (onDraw: ({ctx,currPoint, prevPoint}: Draw)=>void) => {
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const prevPoint = useRef<Point | null>(null)
     const [onMouseDown, setOnMouseDown] = useState(false)
@@ -21,9 +21,9 @@ const useDraw = (onDraw: ({ctx,currPoint, prevPoint}: Draw, _: string)=>void, li
         if(!canvas) return 
         const ctx = canvas.getContext('2d')
         if (!ctx) return 
-        onDraw({ctx, currPoint, prevPoint: prevPoint.current}, lineColor)
+        onDraw({ctx, currPoint, prevPoint: prevPoint.current})
         prevPoint.current = currPoint
-    }, [onMouseDown, onDraw, lineColor])
+    }, [onMouseDown, onDraw])
 
     const getPointInCanvas = (e: MouseEvent) => {
         const canvas = canvasRef.current
